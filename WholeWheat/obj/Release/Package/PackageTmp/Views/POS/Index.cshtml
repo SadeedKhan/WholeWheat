@@ -1,0 +1,430 @@
+﻿@model WholeWheatRepository.Models.DropDowns
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5 left-side">
+            <div class="row">
+                <div class="row row-horizon">
+                    <span class="holdList">
+                        <!-- list Holds goes here -->
+                    </span>
+                    <span id="viewsaletab" onclick="ViewSaleDetail(); ClearKitchenPrint(); ClearPrint(); Clear();" class="Hold">View Sale</span>
+                    <span id="addsaletab" onclick="DineInSaleDetail(); ClearKitchenPrint(); ClearPrint(); Clear();" class="Hold">View Dine-In Sale</span>
+                </div>
+            </div>
+            <div class="col-xs-8">
+                <h2>Choose Sale Type</h2>
+                <input type="hidden" id="txtSaleId" value="0" />
+            </div>
+            <div class="col-xs-4 client-add">
+                <a href="#" data-toggle="modal" data-target="#AddCustomer">
+                    <span class="fa-stack fa-lg" data-toggle="tooltip" data-placement="top" title="Add New Customer">
+                        <i class="fa fa-square fa-stack-2x grey"></i>
+                        <i class="fa fa-user-plus fa-stack-1x fa-inverse dark-blue"></i>
+                    </span>
+                </a>
+                <a href="javascript:void(0)" data-toggle="modal" onclick="Clear(); ClearPrint(); ClearKitchenPrint();">
+                    <span class="fa-stack fa-lg" data-toggle="tooltip" data-placement="top" title="Add New Sale">
+                        <i class="fa fa-square fa-stack-2x grey"></i>
+                        <i class="fa fa-plus fa-stack-1x fa-inverse dark-blue"></i>
+                    </span>
+                </a>
+            </div>
+            <div class="col-sm-12">
+                <select id="ddlsaletype" class="form-control barcode" onchange="SaleTypeModel();">
+                    <option value="0"> Select Sale Type </option>
+                    <option value="1">Dine-In</option>
+                    <option value="2">Take-Away</option>
+                    <option value="3">Delivery</option>
+                </select>
+            </div>
+            <div id="SaleDetail_PartialView"></div>
+            <div class="footer-section">
+                <div class="table-responsive col-sm-12 totalTab">
+                    <table class="table">
+                        <tr>
+                            <td class="active" width="40%">SubTotal</td>
+                            <td class="whiteBg" width="60%">
+                                <span id="Subtot"></span> Rs    <span class="float-right"><b id="ItemsNum"><span></span> items</b></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="active">Order TAX</td>
+                            <td class="whiteBg">
+                                <input type="text" value="0%" onchange="total_change()" id="" class="total-input TAX" placeholder="N/A" maxlength="5">
+                                <span class="float-right"><b id="taxValue">0</b></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="active">Discount</td>
+                            <td class="whiteBg">
+                                <input type="text" value="0" onchange="total_change()" id="" class="total-input Remise" maxlength="5">
+                                <span class="float-right"><b id="RemiseValue"></b></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="active">Delivery</td>
+                            <td class="whiteBg">
+                                <input type="text" value="0" id="" onchange="total_change()" class="total-input Delivery" maxlength="5">
+                                <span class="float-right"><b id="DeliveryValue"></b></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="active">Total</td>
+                            <td class="whiteBg light-blue text-bold"><span id="total"></span> RS</td>
+                        </tr>
+                    </table>
+                </div>
+                <button type="button" onclick="PrintBill();" class="btn btn-orange col-md-4 flat-box-btn"><h5 class="text-bold">Print Bill</h5></button>
+                <button type="button" onclick="saleBtn();" class="btn btn-blue col-md-4 flat-box-btn"><h5 class="text-bold">Save</h5></button>
+                <button type="button" onclick="SalePaymentModel();" class="btn btn-green col-md-4 flat-box-btn"><h5 class="text-bold">PAYMENT</h5></button>
+            </div>
+        </div>
+        <div class="col-md-7 right-side nopadding">
+            <div class="row row-horizon">
+                <div id="MenuList_PartialView"></div>
+            </div>
+            <div class="col-sm-12">
+                <div id="searchContaner">
+                    <div class="input-group stylish-input-group">
+                        <input type="text" id="searchProd" class="form-control" placeholder="Search">
+                        <span class="input-group-addon">
+                            <button type="submit">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- product list section -->
+            <div id="productList2">
+                <div id="SubMenuList_PartialView"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="AddSale">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="AddSale">Add Sale</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <h2 id="SaleType">Sale Type: <span></span></h2>
+                </div>
+                <div class="form-group">
+                    <h3 id="ItemsNum2"><span></span> items</h3>
+                </div>
+                <div class="form-group">
+                    <h2 id="TotalModal"></h2>
+                </div>
+                <div class="form-group">
+                    <label for="paymentMethod">Payment method:</label>
+                    <select class="js-select-options form-control" id="paymentMethod">
+                        <option value="5">Cash</option>
+                    </select>
+                </div>
+                <div class="form-group Paid">
+                    <label for="Paid">Paid</label>
+                    <input type="text" name="paid" class="form-control" id="Paid" placeholder="Paid">
+                </div>
+                <div class="form-group ReturnChange">
+                    <h3 id="ReturnChange">Change <span>0</span> Rs</h3>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-add" onclick="AddSalePayment()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.Modal -->
+<!-- Modal ticket -->
+<div class="modal fade" id="ticket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" id="ticketModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ticket">Receipt</h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div id="printSection">
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <p>
+                                <b>
+                                    <span style="font-size: 36px;">Whole Wheat Hut</span>
+                                    <span style="font-size: 36px;"></span>
+                                </b>
+                            </p>
+                            <p>
+                                <a href="#">www.wholewheathut.com</a>
+                                <font face="Tahoma, Lucida Grande, Trebuchet MS, Verdana, Helvetica, sans-serif">
+                                    <span style="font-size: 15.4px;"></span>
+                                </font>
+                            </p>
+                            <div style="clear:both;">
+                                <h4 class="text-center" id="PrintSaleNo"></h4>
+                                <div style="clear:both;"></div>
+                                <span class="float-left" id="SaleDateTime">Date: </span>
+                                <div style="clear:both;">
+                                    <span class="float-left" id="SaleTypePrint">Sale Type: </span>
+                                    <br />
+                                    <span class="float-left" id="CustomerNamePrint"> </span>
+                                    <span class="float-left" id="CustomerPhoneNoPrint"> </span>
+                                    <br />
+                                    <span class="float-left" id="CustomerAddressPrint"> </span>
+                                    <div style="clear:both;">
+                                        <table class="table" id="tableprint" cellspacing="0" border="0">
+                                            <thead>
+                                                <tr>
+                                                    <th><em>Item Name</em></th>
+                                                    <th>Price</th>
+                                                    <th>Quantity</th>
+                                                    <th>SubTotal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <table class="table" cellspacing="0" border="0" style="margin-bottom:8px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="text-align:left;">Total Items</td>
+                                                    <td id="TotalItemPrint" style="text-align:right; padding-right:1.5%;"></td>
+                                                    <td style="text-align:left; padding-left:1.5%;">Total</td>
+                                                    <td id="TotalAmountPrint" style="text-align:right;font-weight:bold;"> Rs</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:left; font-weight:bold; padding-top:5px;">Discount</td>
+                                                    <td colspan="2" id="DiscountPrint" style="border-top:1px dashed #000; padding-top:5px; text-align:right; font-weight:bold;"> Rs</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:left; font-weight:bold; padding-top:5px;">Delivery</td>
+                                                    <td colspan="2" id="DeliveryPrint" style="border-top:1px dashed #000; padding-top:5px; text-align:right; font-weight:bold;"> Rs</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:left; font-weight:bold; padding-top:5px;">Grand Total</td>
+                                                    <td colspan="2" id="GrandtotalPrint" style="border-top:1px dashed #000; padding-top:5px; text-align:right; font-weight:bold;"> Rs</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:left; font-weight:bold; padding-top:5px;">Paid</td>
+                                                    <td colspan="2" id="PaidAmountPrint" style="padding-top:5px; text-align:right; font-weight:bold;"> Rs</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:left; font-weight:bold; padding-top:5px;">Change</td>
+                                                    <td colspan="2" id="ChangePrint" style="padding-top:5px; text-align:right; font-weight:bold;"> Rs</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div style="border-top:1px solid #000; padding-top:10px;">
+                                            <br />
+                                            <div style="clear:both;">
+                                                <p class="text-center" style="margin:0 auto;margin-top:10px;"></p><div class="text-center" style="background-color:#000;padding:5px;width:85%;color:#fff;margin:0 auto;border-radius:3px;margin-top:20px;"><p>Call Now:  051 8442602-3</p><p>Email : wholewheathut@gmail.com</p></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default hiddenpr" data-dismiss="modal" onclick="ClearPrint();">Close</button>
+                @*<button type="button" class="btn btn-add hiddenpr" onclick="email()">email</button>*@
+                <button type="button" class="btn btn-add hiddenpr" onclick="PrintTicket()">print</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.Modal -->
+<!-- Modal ticket -->
+<div class="modal fade" id="kitchenticket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" id="ticketModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ticket">Kitchen Receipt</h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div id="printSection">
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <div style="clear:both;">
+                                <h2 class="text-center" id="KitchenPrintSaleNo"></h2>
+                                <div style="clear:both;"></div><h4><span id="KitchenSaleDateTime">Date: </span></h4>
+                                <div style="clear:both;">
+                                    <h4><span id="KitchenSaleTypePrint">Sale Type: </span></h4>
+                                    <h4><span id="KitchenCustomerNamePrint"> </span></h4>
+                                    <hr />
+                                    <div style="clear:both;">
+                                        <table class="table" id="kitchentableprint" cellspacing="0" border="0">
+                                            <thead>
+                                                <tr>
+                                                    <th><em>Item Name</em></th>
+                                                    <th style="text-align: center;">Quantity</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default hiddenpr" data-dismiss="modal" onclick="ClearKitchenPrint();">Close</button>
+                @*<button type="button" class="btn btn-add hiddenpr" onclick="email()">email</button>*@
+                <button type="button" class="btn btn-add hiddenpr" onclick="PrintTicket()">print</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.Modal -->
+<!-- Modal add user -->
+<div class="modal fade" id="AddCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add Customer</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" class="form-control" id="txtCustomerId" value="0">
+                <div class="form-group">
+                    <label for="CustomerName">Select Delivery Boy Name</label>
+                    @Html.DropDownList("ddldeliveryboy", new SelectList(Model.GetDeliveryBoy(), "DeliveryBoyID", "DeliveryBoyName"), "Select DeliveryBoy", new { @class = "form-control" })
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label for="CustomerPhone">Phone</label>
+                    <input type="text" name="phone" maxlength="30" class="form-control" onblur="CheckUserExist();" id="txtcustomerphone" placeholder="+920000000000">
+                </div>
+                <div class="form-group">
+                    <label for="CustomerName">Customer Name</label>
+                    <input type="text" name="name" maxlength="50" Required class="form-control" id="txtcustomername" placeholder="Customer Name">
+                </div>
+                <div class="form-group">
+                    <label for="CustomerEmail">Email</label>
+                    <input type="email" maxlength="50" name="email" class="form-control" id="txtcustomeremail" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="CustomerDescription">Description</label>
+                    <input type="text" name="Description" class="form-control" id="txtcustomerdescription" placeholder="Description">
+                </div>
+                <div class="form-group">
+                    <label for="CustomerAddress">Address</label>
+                    <input type="text" name="Address" class="form-control" id="txtcustomeraddress" placeholder="Address">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-add" onclick="InsertUpdateCustomer();">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.Modal -->
+<!-- Modal Dine-In Pending Sales -->
+<div class="modal fade in" id="pendingdineinsaledetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document" id="statsModal" style="width: 1350px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="stats">Pending Dine-In Sale Details</h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div id="statsSection">
+                    <div id="Table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                        <div id="PendingDineInSaleDetail_PartialView"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default hiddenpr" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.Modal -->
+<!-- Modal Pending Sales -->
+<div class="modal fade in" id="pendingsaledetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document" id="statsModal" style="width: 1350px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="stats">Pending Sale Details</h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div id="statsSection">
+                    <div id="Table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                        <div id="PendingSaleDetail_PartialView"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default hiddenpr" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.Modal -->
+<!-- Modal Table No -->
+<div class="modal fade" id="AddTableNo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Table No:</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="CategoryName">Table No:</label>
+                    <input type="text" maxlength="50" name="name" class="form-control" id="txtTableNo" placeholder="00" required="">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-add" onclick="TableNoModel();">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.Modal -->
+<!-- Modal Customer Name -->
+<div class="modal fade" id="AddCustomerName" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Customer Name:</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="CategoryName">Customer Name:</label>
+                    <input type="text" name="name" class="form-control" id="txtCustomerName" placeholder="Enter Customer Name" required="">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-add" onclick="CustomerNameModel();">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.Modal -->
+
+<script src="~/CustomJS/ManagePOS.js"></script>

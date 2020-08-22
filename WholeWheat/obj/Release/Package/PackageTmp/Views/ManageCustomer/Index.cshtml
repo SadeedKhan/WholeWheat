@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
+
+<!-- Page Content -->
+<div class="container">
+    <div id="CustomerDetail_PartialView"></div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-add btn-lg" data-toggle="modal" data-target="#AddCustomer">
+        Add Customer
+    </button>
+</div>
+<!-- /.container -->
+<!-- Modal -->
+<div class="modal fade" id="AddCustomer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add Customer</h4>
+            </div>
+                <div class="modal-body">
+                    <input type="hidden" class="form-control" id="txtCustomerId" value="0">
+                    <div class="form-group">
+                        <label for="CustomerName">Customer Name</label>
+                        <input type="text" name="name" maxlength="50" Required class="form-control" id="txtcustomername" placeholder="Customer Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="CustomerPhone">Phone</label>
+                        <input type="text" name="phone" maxlength="30" class="form-control" id="txtcustomerphone" placeholder="Phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="CustomerEmail">Email</label>
+                        <input type="email" maxlength="50" name="email" class="form-control" id="txtcustomeremail" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="CustomerDiscount">Description</label>
+                        <input type="text"  name="Description" class="form-control" id="txtcustomerdescription" placeholder="Description">
+                    </div>
+                    <div class="form-group">
+                        <label for="CustomerDiscount">Address</label>
+                        <input type="text"  name="Description" class="form-control" id="txtcustomeraddress" placeholder="Address">
+                    </div>
+                    <div class="form-group">
+                        <label>Select Status</label>
+                        <select type="text" class="form-control" id="ddlstatus" required>
+                            <option value="-1">Select</option>
+                            <option value="0">Active</option>
+                            <option value="1">InActive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-add" onclick="InsertUpdateCustomer();">Submit</button>
+                </div>
+        </div>
+    </div>
+</div>
+<!-- /.Modal -->
+<script src="~/CustomJS/ManageCustomer.js"></script>

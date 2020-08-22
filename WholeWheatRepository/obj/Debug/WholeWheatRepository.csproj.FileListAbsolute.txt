@@ -1,0 +1,6 @@
+G:\WholeWheat\WholeWheatRepository\bin\Debug\WholeWheatRepository.dll
+G:\WholeWheat\WholeWheatRepository\bin\Debug\WholeWheatRepository.pdb
+G:\WholeWheat\WholeWheatRepository\obj\Debug\WholeWheatRepository.csprojAssemblyReference.cache
+G:\WholeWheat\WholeWheatRepository\obj\Debug\WholeWheatRepository.csproj.CoreCompileInputs.cache
+G:\WholeWheat\WholeWheatRepository\obj\Debug\WholeWheatRepository.dll
+G:\WholeWheat\WholeWheatRepository\obj\Debug\WholeWheatRepository.pdb

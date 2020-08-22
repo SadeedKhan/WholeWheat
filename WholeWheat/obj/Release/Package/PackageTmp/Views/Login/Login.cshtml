@@ -1,0 +1,62 @@
+﻿@model WholeWheat.Models.Admin.AdminLoginModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>POS Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- normalize & reset style -->
+    <link href="~/css/normalize.min.css" rel="stylesheet" />
+    <link href="~/css/reset.min.css" rel="stylesheet" />
+    <!-- Bootstrap Core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="~/css/Style-Light.css" rel="stylesheet" />
+    <style media="screen">
+        body {
+            background: url(com/demos/zarpos/assets/img/login.jpg) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="modal-open">
+    <div class="modal fade in" id="login-modal" tabindex="-1" role="dialog" style="display: block; padding-left: 17px;">
+        <div class="modal-dialog">
+            <div class="loginmodal-container">
+                <img src="~/img/logo.jpg" alt="logo" style="max-height: 45px; max-width: 200px; margin: 0 auto"/>
+                <h1>Login to Your Account</h1><br>
+
+                @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "login", id = "adminLoginForm", enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    <label style="color:red;">@ViewBag.ErrorMessage</label>
+                    @Html.TextBoxFor(x => x.UserName, new { @placeholder = "Username", @Required = "Required" })
+                    @Html.PasswordFor(x => x.UserPassword, new { @placeholder = "Password", @Required = "Required" })
+                    <input class="login loginmodal-submit" value="Login" type="submit" />
+                }
+                <div class="login-help">
+                    © 2019 Sadeed Ullah Khan
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script type="text/javascript" src="~/js/jquery-2.2.2.min.js"></script>
+    <!-- waves material design effect -->
+    <script type="text/javascript" src="~/js/waves.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#login-modal').modal('show').on('hide.bs.modal', function (e) {
+                e.preventDefault();
+            });
+        });
+    </script>
+    <div class="modal-backdrop fade in"></div>
+</body>
+</html>

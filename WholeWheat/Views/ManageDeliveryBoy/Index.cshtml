@@ -1,0 +1,65 @@
+﻿@{
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
+
+<!-- Page Content -->
+<div class="container">
+    <div id="DeliveryBoyDetail_PartialView"></div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-add btn-lg" data-toggle="modal" data-target="#AddDeliveryBoy">
+        Add DeliveryBoy
+    </button>
+</div>
+<!-- /.container -->
+<!-- Modal -->
+<div class="modal fade" id="AddDeliveryBoy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add DeliveryBoy</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" class="form-control" id="txtDeliveryBoyId" value="0">
+                <div class="form-group">
+                    <label for="DeliveryBoyName">DeliveryBoy Name</label>
+                    <input type="text" name="name" maxlength="50" Required class="form-control" id="txtdeliveryboyname" placeholder="DeliveryBoy Name">
+                </div>
+                <div class="form-group">
+                    <label for="DeliveryBoyPhone">Phone</label>
+                    <input type="text" name="phone" maxlength="30" class="form-control" id="txtdeliveryboyphone" placeholder="Phone">
+                </div>
+                <div class="form-group">
+                    <label for="DeliveryBoyEmail">Email</label>
+                    <input type="email" maxlength="50" name="email" class="form-control" id="txtdeliveryboyemail" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="DeliveryBoyCnic">Cnic</label>
+                    <input type="number" maxlength="50" name="cnic" class="form-control" id="txtdeliveryboycnic" placeholder="Cnic">
+                </div>
+                <div class="form-group">
+                    <label for="DeliveryBoyDiscount">Description</label>
+                    <input type="text" name="Description" class="form-control" id="txtdeliveryboydescription" placeholder="Description">
+                </div>
+                <div class="form-group">
+                    <label for="DeliveryBoyDiscount">Address</label>
+                    <input type="text" name="Description" class="form-control" id="txtdeliveryboyaddress" placeholder="Address">
+                </div>
+                <div class="form-group">
+                    <label>Select Status</label>
+                    <select type="text" class="form-control" id="ddlstatus" required>
+                        <option value="-1">Select</option>
+                        <option value="0">Active</option>
+                        <option value="1">InActive</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-add" onclick="InsertUpdateDeliveryBoy();">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.Modal -->
+<script src="~/CustomJS/ManageDeliveryBoy.js"></script>

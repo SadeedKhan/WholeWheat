@@ -1,0 +1,74 @@
+﻿@{
+        ViewBag.Title = "PrintBill";
+        Layout = "~/Views/shared/_Layout.cshtml";
+    }
+
+<div class="modal fade in" id="ticket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-right: 17px;">
+    <div class="modal-dialog" role="document" id="ticketModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="ticket">Receipt</h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div id="printSection">
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <p>
+                                <b>
+                                    <span style="font-size: 36px;">Whole Wheat Hut</span>
+                                    <span style="font-size: 36px;"></span>
+                                </b>
+                            </p>
+                            <p>
+                                <a href="http://www.ibellone.com">www.ibellone.com</a>
+                                <font face="Tahoma, Lucida Grande, Trebuchet MS, Verdana, Helvetica, sans-serif">
+                                    <span style="font-size: 15.4px;"></span>
+                                </font>
+                            </p>
+                            <div style="clear:both;">
+                                <h4 class="text-center">Sale No.: 00183</h4>
+                                <div style="clear:both;"></div><span class="float-left">Date: 21-03-2019 15:16:42</span>
+                                <br><div style="clear:both;">
+                                    <span class="float-left">Customer: Walk in Customer</span>
+                                    <div style="clear:both;">
+                                        <table class="table" cellspacing="0" border="0">
+                                            <thead>
+                                                <tr>
+                                                    <th><em>#</em></th>
+                                                    <th>Product</th>
+                                                    <th>Quantity</th>
+                                                    <th>SubTotal</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                        <table class="table" cellspacing="0" border="0" style="margin-bottom:8px;">
+                                            <tbody>
+                                            <tr><td style="text-align:left;">Total Items</td>
+                                                <td id="" style="text-align:right; padding-right:1.5%;">5</td>
+                                                <td style="text-align:left; padding-left:1.5%;">Total</td>
+                                                <td style="text-align:right;font-weight:bold;">1750.00 Pesos</td></tr>
+                                            <tr>
+                                                <td colspan="2" style="text-align:left; font-weight:bold; padding-top:5px;">Grand Total</td>
+                                                <td colspan="2" style="border-top:1px dashed #000; padding-top:5px; text-align:right; font-weight:bold;">1750.00 Pesos</td></tr>
+                                            <tr><td colspan="2" style="text-align:left; font-weight:bold; padding-top:5px;">Paid</td>
+                                                <td colspan="2" style="padding-top:5px; text-align:right; font-weight:bold;">1750.00 Pesos</td></tr>
+                                            <tr><td colspan="2" style="text-align:left; font-weight:bold; padding-top:5px;">Change</td>
+                                                <td colspan="2" style="padding-top:5px; text-align:right; font-weight:bold;">0.00 Pesos</td></tr>
+                                            </tbody>
+                                        </table>
+                                        <div style="border-top:1px solid #000; text-align:center; padding-top:10px;"><span class="float-right">Tel: +919814070895</span><div style="clear:both;"><center><img style="margin-top:30px" src="http://www.dar-elweb.com/demos/zarpos/pos/GenerateBarcode/00183/code128/20/3" alt="183"></center><p class="text-center" style="margin:0 auto;margin-top:10px;"></p><div class="text-center" style="background-color:#000;padding:5px;width:85%;color:#fff;margin:0 auto;border-radius:3px;margin-top:20px;"><p>Call Now  +919814070895</p><p>Email : info@ibellone.com</p><p>For Hosting Speial Discount &nbsp; hosting.ibellone.com</p><p><br></p></div></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default hiddenpr" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-add hiddenpr" onclick="PrintTicket()">print</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

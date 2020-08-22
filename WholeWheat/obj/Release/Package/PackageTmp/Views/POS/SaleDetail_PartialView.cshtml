@@ -1,0 +1,82 @@
+﻿@model List<WholeWheatRepository.Models.ManageSaleDetail>
+
+<div class="slimScrollDiv" style="position: relative; overflow-y: scroll; width: auto; height: 355px;">
+    <div id="productList">
+        <div class="col-xs-12">
+            <div class="panel panel-default product-details">
+                <div class="panel-body table-responsive" style="">
+                    <table class="table table-striped" id="tbl_cart_list" style="text-align:center;">
+                        <thead class="table-header">
+                            <tr>
+                                <th>
+                                    <h3>Edit</h3>
+                                </th>
+                                <th>
+                                    <h3>Product</h3>
+                                </th>
+                                <th>
+                                    <h3>Price</h3>
+                                </th>
+                                <th>
+                                    <h3>Quantity</h3>
+                                </th>
+                                <th>
+                                    <h3>Total</h3>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.Count == 0)
+                            {
+                                <tr class="removerow">
+                                    <td colspan="5">
+                                        <div class="messageVide">Empty List <span>(Select Items)</span></div>
+                                    </td>
+                                </tr>
+                            }
+                           else
+                            {
+                                foreach (var SaleDetail in Model)
+                                {
+                                    <tr class="bg-primary" data-saledetailid="@SaleDetail.SaleDetailId" data-sub_menu_name="@SaleDetail.SaleItem" data-submenuid="@SaleDetail.SubMenuId" data-price="@SaleDetail.Price">
+                                        <td>
+                                            <a href="javascript:void(0)">
+                                                <span class="fa-stack fa-sm RemoveSaleDetailRow" data-saledetailid="@SaleDetail.SaleDetailId" >
+                                                    <i class="fa fa-circle fa-stack-2x delete-product"></i>
+                                                    <i class="fa fa-times fa-stack-1x fa-fw fa-inverse"></i>
+                                                </span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <span>@SaleDetail.SaleItem</span>
+                                        </td>
+                                        <td>
+                                            <span>@SaleDetail.Price</span>
+                                        </td>
+                                        <td>
+                                            <div class="nopadding">
+                                                <a href="javascript:void(0)">
+                                                    <span class="fa-stack fa-sm decbutton">
+                                                        <i class="fa fa-square fa-stack-2x light-grey"></i>
+                                                        <i class="fa fa-minus fa-stack-1x fa-inverse white"></i>
+                                                    </span>
+                                                </a><input type="text" id="txtSaleDetailQuantity" class="form-control SaleDetailQuantity" value="@SaleDetail.Quantity" placeholder="0" maxlength="2">
+                                                <a href="javascript:void(0)">
+                                                    <span data-quantity="1" class="fa-stack fa-sm incbutton">
+                                                        <i class="fa fa-square fa-stack-2x light-grey"></i>
+                                                        <i class="fa fa-plus fa-stack-1x fa-inverse white"></i>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td><span class="subtotal NetTotal">@SaleDetail.NetTotal</span></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

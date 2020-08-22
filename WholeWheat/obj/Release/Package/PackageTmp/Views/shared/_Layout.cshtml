@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Whole Wheat Hut</title>
+    @Styles.Render("~/All/css")
+    <script src="~/js/jquery-2.2.2.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src="~/img/logo.jpg" alt="logo" style='max-height: 45px; max-width: 200px'>
+                </a>
+            </div>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    @if (Session["UserId"] != null || Session["UserName"] != null)
+                    {
+                        <li class="flat-box"><a href="@Url.Action("Index", "POS")"><i class="fa fa-credit-card"></i> POS</a></li>
+                        <li class="flat-box"><a href="@Url.Action("Index", "ManageSubMenu")"><i class="fa fa-archive"></i> Sub Menu</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle flat-box" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> People <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="flat-box"><a href="@Url.Action("Index", "ManageCustomer")"><i class="fa fa-user"></i> Customers</a></li>
+                                <li class="flat-box"><a href="@Url.Action("Index", "ManageDeliveryBoy")"><i class="fa fa-truck"></i> DeliveryBoy</a></li>
+                            </ul>
+                        </li>
+                        <li class="flat-box"><a href="@Url.Action("Index", "Sales")"><i class="fa fa-ticket"></i> Sales</a></li>
+                        <li class="flat-box"><a href="@Url.Action("Index", "ManageExpense")"><i class="fa fa-usd"></i> Expense</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle flat-box" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bookmark"></i> Categories <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li class="flat-box"><a href="@Url.Action("Index", "ManageMenu")"><i class="fa fa-archive"></i> Menu</a></li>
+                                <li class="flat-box"><a href="@Url.Action("Index", "ManageExpenseHead")"><i class="fa fa-usd"></i> Expense</a></li>
+                            </ul>
+                        </li>
+                        <li class="flat-box"><a href="@Url.Action("Index", "Reports")"><i class="fa fa-line-chart"></i> Reports</a></li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="flat-box"><a href="#" onclick="Logout();" title="Logout"><i class="fa fa-sign-out fa-lg"></i></a></li>
+                </ul>
+            </div>
+            <div class="lds-css ng-scope" id="loading-image">
+                <div class="lds-double-ring ">
+                    <div>
+                    </div>
+                    <div>
+                    </div>
+                </div>
+                <div class="overlay"></div>
+            </div>
+            <div id="loadingimg"></div>
+        </div>
+        <!-- /.container -->
+    </nav>
+    <!-- Page Content -->
+    <!-- Page Content -->
+    @RenderBody();
+    <!-- /.container -->
+    @Scripts.Render("~/All/js")
+    <script src="~/CustomJS/Admin.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

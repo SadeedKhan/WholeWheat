@@ -1,0 +1,21 @@
+﻿@model List<WholeWheatRepository.Models.ManageSubMenu>
+
+@foreach (var currentsubmenu in Model)
+{
+<div class="col-sm-2 col-xs-4">
+    <a href="javascript:void(0)" data-submenuid="@currentsubmenu.SubMenuID" data-price="@currentsubmenu.Price" data-sub_menu_name="@currentsubmenu.SubMenuName" data_menu_id="@currentsubmenu.MenuID" class="add_to_cart" title="@currentsubmenu.SubMenuName" data-original-title="@currentsubmenu.SubMenuName">
+        <div class="product @currentsubmenu.Color flat-box waves-effect waves-block">
+            <h3 id="menuname">@currentsubmenu.SubMenuName</h3>
+            <span></span>
+            <input type="hidden" value="idname-@currentsubmenu.SubMenuName" />
+            <input type="hidden" id="idprice-39" name="price" value="@currentsubmenu.Price" />
+            <input type="hidden" id="category" name="category" value="@currentsubmenu.MenuName" />
+            <div class="mask">
+                <h3>@currentsubmenu.Price Rs</h3>
+                <p>@currentsubmenu.Description</p>
+            </div>
+            <img src="@currentsubmenu.FilePath" alt="img">
+        </div>
+    </a>
+</div>
+}

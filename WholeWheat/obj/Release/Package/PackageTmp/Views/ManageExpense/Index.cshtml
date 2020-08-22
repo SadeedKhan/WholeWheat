@@ -1,0 +1,87 @@
+﻿@model WholeWheatRepository.Models.DropDowns
+@{
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div id="ExpenseDetail_PartialView"></div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-add btn-lg" data-toggle="modal" data-target="#AddExpense">
+        Add Expense
+    </button>
+</div>
+<div class="modal fade" id="AddExpense" role="dialog">
+    <input type="hidden" class="form-control" id="txtExpenseId" value="0">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add Expense</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group controls">
+                    <label for="Reference">Expense Name </label>
+                    <input type="text" name="reference" class="form-control" id="txtexpensename" placeholder="Expense Name">
+                </div>
+                <div class="form-group">
+                    <label for="Date">Date </label>
+                    <input type="text" class="form-control datepicker" id="txtexpensedate" placeholder="Date">
+                </div>
+                <div class="form-group">
+                    <label for="Reference">Reference </label>
+                    <input type="text" class="form-control" id="txtexpensereference" placeholder="Reference">
+                </div>
+                <div class="form-group">
+                    <label for="Category">Category</label>
+                    @Html.DropDownList("ddlexpensehead", new SelectList(Model.GetExpenseHead(), "ExpenseHeadID", "ExpenseHeadName"), "Select Expense Head", new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label for="Amount">Amount (Rs)</label>
+                    <input type="number" step="any" class="form-control" id="txtexpenseamount" placeholder="Amount">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">Attachment</label>
+                    <input type="file" class="form-control file" id="expensefile">
+                    <input type="hidden" class="form-control" id="txtexpenseimagename">
+                </div>
+                <div class="form-group">
+                    <label for="Note">Note</label>
+                    <textarea id="txtnote" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Select Status</label>
+                    <select type="text" class="form-control" id="ddlstatus">
+                        <option value="-1">Select</option>
+                        <option value="0">Active</option>
+                        <option value="1">InActive</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-add" onclick="InsertUpdateExpense();">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Image Model -->
+<div class="modal fade" id="ImageModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Image</h4>
+            </div>
+            <div class="modal-body">
+                <img src="" id="showimg" class="img-responsive center" alt="" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.Modal -->
+<script src="~/js/bootstrap-datepicker.min.js"></script>
+<script src="~/CustomJS/ManageExpense.js"></script>

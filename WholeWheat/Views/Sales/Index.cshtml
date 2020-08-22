@@ -1,0 +1,108 @@
+﻿@{
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div id="Sales_PartialView"></div>
+</div>
+<!-- Modal ticket -->
+<div class="modal fade" id="ticket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document" id="ticketModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ticket">Receipt</h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <div id="printSection">
+                    <div class="col-md-12">
+                        <div class="text-center">
+                            <p>
+                                <b>
+                                    <span style="font-size: 36px;">Whole Wheat Hut</span>
+                                    <span style="font-size: 36px;"></span>
+                                </b>
+                            </p>
+                            <p>
+                                <a href="#">www.wholewheathut.com</a>
+                                <font face="Tahoma, Lucida Grande, Trebuchet MS, Verdana, Helvetica, sans-serif">
+                                    <span style="font-size: 15.4px;"></span>
+                                </font>
+                            </p>
+                            <div style="clear:both;">
+                                <h4 class="text-center" id="PrintSaleNo"></h4>
+                                <div style="clear:both;"></div>
+                                <span class="float-left" id="SaleDateTime">Date: </span>
+                                <div style="clear:both;">
+                                    <span class="float-left" id="SaleTypePrint">Sale Type: </span>
+                                    <br />
+                                    <span class="float-left" id="CustomerNamePrint"> </span>
+                                    <span class="float-left" id="CustomerPhoneNoPrint"> </span>
+                                    <br />
+                                    <span class="float-left" id="CustomerAddressPrint"> </span>
+                                    <div style="clear:both;">
+                                        <table class="table" id="tableprint" cellspacing="0" border="0">
+                                            <thead>
+                                                <tr>
+                                                    <th><em>Item Name</em></th>
+                                                    <th>Price</th>
+                                                    <th>Quantity</th>
+                                                    <th>SubTotal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                        <table class="table" cellspacing="0" border="0" style="margin-bottom:8px;">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="text-align:left;">Total Items</td>
+                                                    <td id="TotalItemPrint" style="text-align:right; padding-right:1.5%;"></td>
+                                                    <td style="text-align:left; padding-left:1.5%;">Total</td>
+                                                    <td id="TotalAmountPrint" style="text-align:right;font-weight:bold;"> Rs</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:left; font-weight:bold; padding-top:5px;">Discount</td>
+                                                    <td colspan="2" id="DiscountPrint" style="border-top:1px dashed #000; padding-top:5px; text-align:right; font-weight:bold;"> Rs</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:left; font-weight:bold; padding-top:5px;">Delivery</td>
+                                                    <td colspan="2" id="DeliveryPrint" style="border-top:1px dashed #000; padding-top:5px; text-align:right; font-weight:bold;"> Rs</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:left; font-weight:bold; padding-top:5px;">Grand Total</td>
+                                                    <td colspan="2" id="GrandtotalPrint" style="border-top:1px dashed #000; padding-top:5px; text-align:right; font-weight:bold;"> Rs</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:left; font-weight:bold; padding-top:5px;">Paid</td>
+                                                    <td colspan="2" id="PaidAmountPrint" style="padding-top:5px; text-align:right; font-weight:bold;"> Rs</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" style="text-align:left; font-weight:bold; padding-top:5px;">Change</td>
+                                                    <td colspan="2" id="ChangePrint" style="padding-top:5px; text-align:right; font-weight:bold;"> Rs</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div style="border-top:1px solid #000; padding-top:10px;">
+                                            <br />
+                                            <div style="clear:both;">
+                                                <p class="text-center" style="margin:0 auto;margin-top:10px;"></p><div class="text-center" style="background-color:#000;padding:5px;width:85%;color:#fff;margin:0 auto;border-radius:3px;margin-top:20px;"><p>Call Now:  051 8442602-3</p><p>Email : wholewheathut@gmail.com</p></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default hiddenpr" data-dismiss="modal" onclick="ClearPrint();">Close</button>
+                @*<button type="button" class="btn btn-add hiddenpr" onclick="email()">email</button>*@
+                <button type="button" class="btn btn-add hiddenpr" onclick="PrintTicket()">print</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- /.Modal -->
+<script src="~/CustomJS/ManageSales.js"></script>

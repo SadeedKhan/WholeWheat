@@ -1,0 +1,6 @@
+G:\WholeWheat\WholeWheatRepository\bin\Release\WholeWheatRepository.dll
+G:\WholeWheat\WholeWheatRepository\bin\Release\WholeWheatRepository.pdb
+G:\WholeWheat\WholeWheatRepository\obj\Release\WholeWheatRepository.csprojAssemblyReference.cache
+G:\WholeWheat\WholeWheatRepository\obj\Release\WholeWheatRepository.csproj.CoreCompileInputs.cache
+G:\WholeWheat\WholeWheatRepository\obj\Release\WholeWheatRepository.dll
+G:\WholeWheat\WholeWheatRepository\obj\Release\WholeWheatRepository.pdb

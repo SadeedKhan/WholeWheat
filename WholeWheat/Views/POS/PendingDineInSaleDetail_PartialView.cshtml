@@ -1,0 +1,47 @@
+﻿@model List<WholeWheatRepository.Models.ManageSale>
+
+<table id="Table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th style="text-align:center;">X</th>
+            <th><h4>Sale Type</h4></th>
+            <th><h4>Recipt #</h4></th>
+            <th><h4>Sale Date</h4></th>
+            <th><h4>Table #</h4></th>
+            <th><h4>Total</h4></th>
+            <th><h4>Sale Status</h4></th>
+            <th><h4>Action(s)</h4></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var current in Model)
+        {
+        <tr>
+            <td style="text-align:center;">
+                <a href="javascript:void(0)" onclick="delete_record(@current.SaleID)">
+                    <span class="fa-stack fa-sm">
+                        <i class="fa fa-circle fa-stack-2x delete-product"></i>
+                        <i class="fa fa-times fa-stack-1x fa-fw fa-inverse"></i>
+                    </span>
+                </a>
+            </td>
+            <td>@current.SaleType</td>
+            <td>@current.ReciptNo</td>
+            <td>@current.SaleDate</td>
+            <td>@current.TableNo</td>
+            <td>@current.TotalAmount</td>
+            @if (current.SaleStatus == "Paid")
+            {
+                <td><span class="paid">@current.SaleStatus</span></td>
+            }
+            else
+            {
+                <td><span class="unpaid">@current.SaleStatus</span></td>
+            }
+            <td style="text-align:center;">
+                <a><span data-saleid="@current.SaleID" data-saletypeid="@current.SaleTypeID" data-reciptno="@current.ReciptNo" data-totalitems="@current.TotalItems" data-tax="@current.Tax" data-taxamount="@current.TaxAmount" data-subtotalamount="@current.SubTotal" data-totalamount="@current.TotalAmount" data-discountamount="@current.DiscountAmount" data-paidamount="@current.PaidAmount" data-balance="@current.Balance" data-tableno="@current.TableNo" data-paymentmodeid="@current.PaymentModeID" class="btn btn-picker EditDineInSale">View<i class="fa fa-eye"></i></span></a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
