@@ -17,17 +17,24 @@ namespace WholeWheat.Controllers
         //        Response.Redirect("/Login/Login");
         //    // base.OnActionExecuting(filterContext);
         //}
-        //public override void OnAuthorization(AuthorizationContext filterContext)
-        //{
-        //    if (this.AuthorizeCore(filterContext.HttpContext))
-        //    {
-        //        base.OnAuthorization(filterContext);
-        //    }
-        //    else
-        //    {
-        //        this.HandleUnauthorizedRequest(filterContext);
-        //    }
-        //}
-       
+
+        protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+        {
+            FormsAuthentication.SignOut();
+            filterContext.Result = new RedirectResult("~/Login/Login");
+        }
+
+        public override void OnAuthorization(AuthorizationContext filterContext)
+        {
+            if (this.AuthorizeCore(filterContext.HttpContext))
+            {
+                base.OnAuthorization(filterContext);
+            }
+            else
+            {
+                this.HandleUnauthorizedRequest(filterContext);
+            }
+        }
+
     }
 }

@@ -7,9 +7,7 @@ An on-screen virtual keyboard embedded within the browser window which
 will popup when a specified entry field is focused. The user can then
 type and preview their input before Accepting or Canceling.
 
-This plugin adds default class names to match jQuery UI theme styling.
-Bootstrap & custom themes may also be applied - See
-https://github.com/Mottie/Keyboard#themes
+
 
 Requires:
 	jQuery v1.4.3+
@@ -18,13 +16,6 @@ Optional:
 	jQuery UI (position utility only) & CSS theme
 	jQuery mousewheel
 
-Setup/Usage:
-	Please refer to https://github.com/Mottie/Keyboard/wiki
-
------------------------------------------
-Caret code modified from jquery.caret.1.02.js
-Licensed under the MIT License:
-http://www.opensource.org/licenses/mit-license.php
 -----------------------------------------
 */
 /*jshint browser:true, jquery:true, unused:false */
@@ -388,7 +379,6 @@ http://www.opensource.org/licenses/mit-license.php
 			if (base.last.end === 0 && base.last.start > 0) {
 				base.last.end = base.last.start;
 			}
-			// IE will have start -1, end of 0 when not focused (see demo: http://jsfiddle.net/Mottie/fgryQ/3/)
 			if (base.last.start < 0) {
 				// ensure caret is at the end of the text (needed for IE)
 				base.last.start = base.last.end = base.originalContent.length;
@@ -726,7 +716,6 @@ http://www.opensource.org/licenses/mit-license.php
 				}
 
 				// restrict input - keyCode in keypress special keys:
-				// see http://www.asquare.net/javascript/tests/KeyCode.html
 				if (o.restrictInput) {
 					// allow navigation keys to work - Chrome doesn't fire a keypress event (8 = bksp)
 					if ((e.which === keyCodes.backSpace || e.which === 0) &&
@@ -1315,7 +1304,6 @@ http://www.opensource.org/licenses/mit-license.php
 
 		if (o.useCombos) {
 			// keep 'a' and 'o' in the regex for ae and oe ligature (Ã¦,Å“)
-			// thanks to KennyTM: http://stackoverflow.com/q/4275077
 			// original regex /([`\'~\^\"ao])([a-z])/mig moved to $.keyboard.comboRegex
 			if ($keyboard.msie) {
 				// old IE may not have the caret positioned correctly, so just check the whole thing
@@ -1756,7 +1744,6 @@ http://www.opensource.org/licenses/mit-license.php
 			//  their decimal unicode value
 			//  (e.g. '~' is a regular key, class = 'ui-keyboard-126'
 			//  (126 is the unicode decimal value - same as &#126;)
-			//  See https://en.wikipedia.org/wiki/List_of_Unicode_characters#Control_codes
 			.addClass(keyClass)
 			.html(data.html)
 			.appendTo(base.temp[0]);
@@ -1795,7 +1782,6 @@ http://www.opensource.org/licenses/mit-license.php
 		}
 		// flatten array
 		merged = merged.concat.apply(merged, arrays).join(' ');
-		// produce hash name - http://stackoverflow.com/a/7616484/145346
 		hash = 0;
 		len = merged.length;
 		if (len === 0) {
@@ -2536,7 +2522,6 @@ http://www.opensource.org/licenses/mit-license.php
 
 	$keyboard.defaultOptions = {
 		// set this to ISO 639-1 language code to override language set by the layout
-		// http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 		// language defaults to 'en' if not found
 		language: null,
 		rtl: false,
@@ -2682,7 +2667,6 @@ http://www.opensource.org/licenses/mit-license.php
 		// enabling still depends on the mousewheel plugin
 		useWheel: true,
 
-		// combos (emulate dead keys : http://en.wikipedia.org/wiki/Keyboard_layout#US-International)
 		// if user inputs `a the script converts it to Ã , ^o becomes Ã´, etc.
 		useCombos: true,
 
@@ -2832,11 +2816,6 @@ http://www.opensource.org/licenses/mit-license.php
 		return this.data('keyboard');
 	};
 
-	/* Copyright (c) 2010 C. F., Wong (<a href="http://cloudgen.w0ng.hk">Cloudgen Examplet Store</a>)
-	 * Licensed under the MIT License:
-	 * http://www.opensource.org/licenses/mit-license.php
-	 * Highly modified from the original
-	 */
 
 	$.fn.caret = function (start, end, noFocus) {
 		if (typeof this[0] === 'undefined' || this.is(':hidden') || this.css('visibility') === 'hidden') {
@@ -2875,7 +2854,6 @@ http://www.opensource.org/licenses/mit-license.php
 			return this;
 		} else {
 			if (/(email|number)/i.test(el.type)) {
-				// fix suggested by raduanastase (https://github.com/Mottie/Keyboard/issues/105#issuecomment-40456535)
 				start = end = $el.val().length;
 			} else if (ss) {
 				start = el.selectionStart;

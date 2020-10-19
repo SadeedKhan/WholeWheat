@@ -356,7 +356,6 @@
  * Requires:
  *  jQuery
  *  jQuery UI & css
- *  Keyboard plugin : https://github.com/Mottie/Keyboard
  *
  * Setup:
  *  $('.ui-keyboard-input')
@@ -494,7 +493,6 @@ $.fn.addAutocomplete = function(options){
 
 /*! jQuery UI Virtual Keyboard Virtual Caret v1.1.5 (beta) *//*
  * for Keyboard v1.18+ only (2/20/2016)
- * modified from https://github.com/component/textarea-caret-position
  *
  * By Rob Garrison (aka Mottie)
  * Licensed under the MIT License
@@ -549,7 +547,6 @@ $.fn.addAutocomplete = function(options){
 			namespace = base.caret_namespace = base.namespace + 'caret';
 			base.extensionNamespace.push( namespace );
 
-			// modified from https://github.com/component/textarea-caret-position
 			// The properties that we copy into a mirrored div.
 			// Note that some browsers, such as Firefox,
 			// do not concatenate properties, i.e. padding-top, bottom etc. -> padding,
@@ -613,10 +610,8 @@ $.fn.addAutocomplete = function(options){
 				});
 
 				if ( $keyboard.firefox ) {
-					// Firefox adds 2 pixels to the padding - https://bugzilla.mozilla.org/show_bug.cgi?id=753662
 					style.width = parseInt( computed.width, 10 ) - 2 + 'px';
 					// Firefox lies about the overflow property for textareas:
-					// https://bugzilla.mozilla.org/show_bug.cgi?id=984275
 					if ( element.scrollHeight > parseInt( computed.height, 10 ) ) {
 						style.overflowY = 'scroll';
 					}
@@ -630,7 +625,6 @@ $.fn.addAutocomplete = function(options){
 
 				div.textContent = element.value.substring( 0, position );
 				// the second special handling for input type="text" vs textarea:
-				// spaces need to be replaced with non-breaking spaces - http://stackoverflow.com/a/13402035/1269037
 				if ( element.nodeName === 'INPUT' ) {
 					div.textContent = div.textContent.replace( /\x20/g, '\xa0' );
 				}
@@ -824,11 +818,7 @@ $.fn.addAutocomplete = function(options){
  * the necessary themes to make the keyboard compatible with
  * jQuery Mobile themes
  *
- * Requires:
- *  jQuery - http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js
- *  jQuery Mobile - http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.js
- *  jQuery Mobile themes -  http://code.jquery.com/mobile/1.0.1/jquery.mobile-1.0.1.min.css
- *
+
  * Setup:
  *  $('.ui-keyboard-input')
  *   .keyboard(options)
@@ -1016,7 +1006,6 @@ $.fn.addMobile = function(options){
  *
  * Requires:
  *  jQuery
- *  Keyboard plugin : https://github.com/Mottie/Keyboard
  *
  * Setup:
  *  $('.ui-keyboard-input')
@@ -1233,7 +1222,6 @@ $.fn.addNavigation = function(options){
  *
  * Requires:
  *  jQuery
- *  Keyboard plugin : https://github.com/Mottie/Keyboard
  *
  * Setup:
  *  $('.ui-keyboard-input')
@@ -1325,7 +1313,6 @@ $.fn.previewKeyset = function( options ) {
  *
  * Requires:
  *  jQuery v1.4.4+
- *  Keyboard v1.17.14+ - https://github.com/Mottie/Keyboard
  *
  * Setup:
  *  $('.ui-keyboard-input')
@@ -1444,7 +1431,6 @@ $.keyboard = $.keyboard || {};
 				}
 			};
 
-			// modified from Fisher-Yates shuffle ( http://bost.ocks.org/mike/shuffle/ )
 			// to allow not shuffling specifically mapped array elements
 			base.shuffle = function(array, map) {
 				var swap, random,
@@ -1569,7 +1555,6 @@ $.keyboard = $.keyboard || {};
  *
  * Requires:
  *  jQuery
- *  Keyboard plugin : https://github.com/Mottie/Keyboard
  *
  * Setup:
  *  $('.ui-keyboard-input')
@@ -1888,7 +1873,7 @@ $.keyboard = $.keyboard || {};
 
 }));
 
-/* Copyright (c) 2013 Brandon Aaron (http://brandon.aaron.sh)
+/* Copyright (c) 2013 Brandon Aaron 
  * Licensed under the MIT License (LICENSE.txt).
  *
  * Version: 3.1.12

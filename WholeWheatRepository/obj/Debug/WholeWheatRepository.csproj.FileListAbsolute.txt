@@ -4,3 +4,9 @@ G:\WholeWheat\WholeWheatRepository\obj\Debug\WholeWheatRepository.csprojAssembly
 G:\WholeWheat\WholeWheatRepository\obj\Debug\WholeWheatRepository.csproj.CoreCompileInputs.cache
 G:\WholeWheat\WholeWheatRepository\obj\Debug\WholeWheatRepository.dll
 G:\WholeWheat\WholeWheatRepository\obj\Debug\WholeWheatRepository.pdb
+F:\Sir Irfan Software House\Repos\WholeWheat\WholeWheatRepository\bin\Debug\WholeWheatRepository.dll
+F:\Sir Irfan Software House\Repos\WholeWheat\WholeWheatRepository\bin\Debug\WholeWheatRepository.pdb
+F:\Sir Irfan Software House\Repos\WholeWheat\WholeWheatRepository\obj\Debug\WholeWheatRepository.csprojAssemblyReference.cache
+F:\Sir Irfan Software House\Repos\WholeWheat\WholeWheatRepository\obj\Debug\WholeWheatRepository.csproj.CoreCompileInputs.cache
+F:\Sir Irfan Software House\Repos\WholeWheat\WholeWheatRepository\obj\Debug\WholeWheatRepository.dll
+F:\Sir Irfan Software House\Repos\WholeWheat\WholeWheatRepository\obj\Debug\WholeWheatRepository.pdb

@@ -9,7 +9,6 @@
  *
  * Requires:
  *  jQuery
- *  Keyboard plugin : https://github.com/Mottie/Keyboard
  *
  * Setup:
  *  $('.ui-keyboard-input')

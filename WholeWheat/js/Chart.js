@@ -323,7 +323,6 @@
             return rgb2keyword(hsv2rgb(args));
         }
 
-        // http://dev.w3.org/csswg/css-color/#hwb-to-rgb
         function hwb2rgb(hwb) {
             var h = hwb[0] / 360,
                 wh = hwb[1] / 100,
@@ -1341,7 +1340,6 @@
             },
 
             luminosity: function () {
-                // http://www.w3.org/TR/WCAG20/#relativeluminancedef
                 var rgb = this.values.rgb;
                 var lum = [];
                 for (var i = 0; i < rgb.length; i++) {
@@ -1352,7 +1350,7 @@
             },
 
             contrast: function (color2) {
-                // http://www.w3.org/TR/WCAG20/#contrast-ratiodef
+              
                 var lum1 = this.luminosity();
                 var lum2 = color2.luminosity();
                 if (lum1 > lum2) {
@@ -1367,7 +1365,7 @@
             },
 
             dark: function () {
-                // YIQ equation from http://24ways.org/2010/calculating-color-contrast
+                
                 var rgb = this.values.rgb,
                     yiq = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000;
                 return yiq < 128;
@@ -1424,7 +1422,7 @@
 
             greyscale: function () {
                 var rgb = this.values.rgb;
-                // http://en.wikipedia.org/wiki/Grayscale#Converting_color_to_grayscale
+                
                 var val = rgb[0] * 0.3 + rgb[1] * 0.59 + rgb[2] * 0.11;
                 this.setValues("rgb", [val, val, val]);
                 return this;
@@ -1590,12 +1588,10 @@
     }, { "color-convert": 3, "color-string": 4 }], 7: [function (require, module, exports) {
         /*!
          * Chart.js
-         * http://chartjs.org/
          * Version: 2.0.2
          *
          * Copyright 2015 Nick Downie
          * Released under the MIT license
-         * https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
          */
 
 
@@ -4488,7 +4484,6 @@
             };
             helpers.splineCurve = function (firstPoint, middlePoint, afterPoint, t) {
                 //Props to Rob Spencer at scaled innovation for his post on splining between points
-                //http://scaledinnovation.com/analytics/splines/aboutSplines.html
 
                 // This function must also respect "skipped" points
 
@@ -4564,7 +4559,6 @@
                 return niceFraction * Math.pow(10, exponent);
             };
             //Easing functions adapted from Robert Penner's easing equations
-            //http://www.robertpenner.com/easing/
             var easingEffects = helpers.easingEffects = {
                 linear: function (t) {
                     return t;
@@ -4761,7 +4755,6 @@
                     return easingEffects.easeOutBounce(t * 2 - 1) * 0.5 + 1 * 0.5;
                 }
             };
-            //Request animation polyfill - http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
             helpers.requestAnimFrame = (function () {
                 return window.requestAnimationFrame ||
                     window.webkitRequestAnimationFrame ||
@@ -4800,7 +4793,6 @@
 
                 // Scale mouse coordinates into canvas coordinates
                 // by following the pattern laid out by 'jerryj' in the comments of
-                // http://www.html5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/
                 var paddingLeft = parseFloat(helpers.getStyle(canvas, 'padding-left'));
                 var paddingTop = parseFloat(helpers.getStyle(canvas, 'padding-top'));
                 var paddingRight = parseFloat(helpers.getStyle(canvas, 'padding-right'));
@@ -8145,7 +8137,6 @@
                     maxTicks = Math.max(2, maxTicks);
 
                     // To get a "nice" value for the tick spacing, we will use the appropriately named
-                    // "nice number" algorithm. See http://stackoverflow.com/questions/8506881/nice-label-algorithm-for-charts-with-minimum-ticks
                     // for details.
 
                     var spacing;
@@ -8560,7 +8551,6 @@
                     maxTicks = Math.max(2, maxTicks); // Make sure we always have at least 2 ticks
 
                     // To get a "nice" value for the tick spacing, we will use the appropriately named
-                    // "nice number" algorithm. See http://stackoverflow.com/questions/8506881/nice-label-algorithm-for-charts-with-minimum-ticks
                     // for details.
 
                     var niceRange = helpers.niceNum(this.max - this.min, false);
@@ -8606,9 +8596,7 @@
                 fit: function () {
                     /*
                      * Right, this is really confusing and there is a lot of maths going on here
-                     * The gist of the problem is here: https://gist.github.com/nnnick/696cc9c55f4b0beb8fe9
                      *
-                     * Reaction: https://dl.dropboxusercontent.com/u/34601363/toomuchscience.gif
                      *
                      * Solution:
                      *
@@ -8629,7 +8617,6 @@
                      * This will mean we have a shape fitted to the canvas, as large as it can be with the labels
                      * and position it in the most space efficient manner
                      *
-                     * https://dl.dropboxusercontent.com/u/34601363/yeahscience.gif
                      */
 
                     var pointLabelFontSize = helpers.getValueOrDefault(this.options.pointLabels.fontSize, Chart.defaults.global.defaultFontSize);
@@ -8910,13 +8897,13 @@
                 position: "bottom",
 
                 time: {
-                    parser: false, // false == a pattern string from http://momentjs.com/docs/#/parsing/string-format/ or a custom callback that converts its argument to a moment
-                    format: false, // DEPRECATED false == date objects, moment object, callback or a pattern string from http://momentjs.com/docs/#/parsing/string-format/
+                    parser: false, 
+                    format: false, // DEPRECATED false == date objects, moment object, callback or a pattern string
                     unit: false, // false == automatic or override with week, month, year, etc.
                     round: false, // none, or override with week, month, year, etc.
                     displayFormat: false, // DEPRECATED
 
-                    // defaults to unit's corresponding unitFormat below or override using pattern string from http://momentjs.com/docs/#/displaying/format/
+                    // defaults to unit's corresponding unitFormat below or override using pattern string
                     displayFormats: {
                         'millisecond': 'h:mm:ss.SSS a', // 11:20:01.123 AM,
                         'second': 'h:mm:ss a', // 11:20:01 AM
@@ -8937,7 +8924,7 @@
             var TimeScale = Chart.Scale.extend({
                 initialize: function () {
                     if (!moment) {
-                        throw new Error('Chart.js - Moment.js could not be found! You must include it before Chart.js to use the time scale. Download at https://momentjs.com');
+                        throw new Error('Chart.js - Moment.js could not be found! You must include it before Chart.js to use the time scale.');
                     }
 
                     Chart.Scale.prototype.initialize.call(this);
@@ -9201,7 +9188,6 @@
                     }
                     // Custom parsing (return an instance of moment)
                     if (typeof this.options.time.format !== 'string' && this.options.time.format.call) {
-                        console.warn("options.time.format is deprecated and replaced by options.time.parser. See http://nnnick.github.io/Chart.js/docs-v2/#scales-time-scale");
                         return this.options.time.format(label);
                     }
                     // Moment format parsing

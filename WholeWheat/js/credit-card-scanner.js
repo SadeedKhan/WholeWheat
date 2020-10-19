@@ -1,25 +1,4 @@
 
-// /////////////////////////////////////////////////////////////////////////////////
-// JavaScript Magstripe (track 1, track2) data parser object
-//
-// Mar-22-2005	Modified by Wayne Walrath,
-//				Acme Technologies http://www.acmetech.com
-//			based on demo source code from www.skipjack.com
-//
-// USAGE:
-// var p = new SwipeParserObj();
-// p.dump();  -- returns parsed field values and meta info.
-//	-- or --
-// get individual field names (see member variables at top of object)
-//
-// if( p.hasTrack1 ){
-//		p.surname;
-//		p.firstname;
-//		p.account;
-//		p.exp_month + "/" + p.exp_year;
-//	}
-///////////////////////////////////////////////////////////////////////////////////
-
 function SwipeParserObj(strParse)
 {
 	///////////////////////////////////////////////////////////////

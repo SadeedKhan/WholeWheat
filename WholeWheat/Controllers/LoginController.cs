@@ -11,7 +11,6 @@ using WholeWheatRepository.Repository;
 
 namespace WholeWheat.Controllers
 {
-    [Authorize]
     public class LoginController : Controller
     {
         // GET: Login
